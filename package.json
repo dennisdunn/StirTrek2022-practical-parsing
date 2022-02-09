@@ -19,5 +19,8 @@
   "homepage": "https://github.com/dennisdunn/StirTrek2022-practical-parsing#readme",
   "dependencies": {
     "@dennisdunn/tiny-parse": "^0.4.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
