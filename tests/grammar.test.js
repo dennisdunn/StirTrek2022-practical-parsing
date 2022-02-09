@@ -1,4 +1,4 @@
-const { context } = require('@dennisdunn/tiny-parse');
+const { context, flat } = require('@dennisdunn/tiny-parse');
 const G = require('../src/grammar');
 
 const log = obj => {
@@ -6,7 +6,7 @@ const log = obj => {
 }
 
 const run = str => {
-    const parser = G.start;
+    const parser = flat(G.start);
     const result = parser(context(str));
     log(result);
 }

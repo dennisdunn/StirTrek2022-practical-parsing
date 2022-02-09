@@ -1,22 +1,24 @@
-const { choice, many, sequence, optional, anyOfChar, whitespace, number, map, str} = require('@dennisdunn/tiny-parse');
+const { choice, many, sequence, optional, anyOfChar, whitespace, number, map, str } = require('@dennisdunn/tiny-parse');
+
+const token = tag => value => ({ type: tag.toUpperCase(), value });
 
 // run a parser and remove any trailing whitespace
 const ignore_ws = parser => map(sequence(parser, optional(many(whitespace))), value => Array.isArray(value) ? value[0] : value);
 
 // summation operator
-const sop = ignore_ws(anyOfChar('+-'));
+const sop = ignore_ws(map(anyOfChar('+-'), token('sum_op')));
 
 // product operator
-const pop = ignore_ws(anyOfChar('*/'));
+const pop = ignore_ws(map(anyOfChar('*/'), token('prod_op')));
 
 // open paren
-const lpar = ignore_ws(str('('));
+const lpar = ignore_ws(map(str('('), token('open_paren')));
 
 // close paren
-const rpar = ignore_ws(str(')'));
+const rpar = ignore_ws(map(str(')'), token('close_paren')));
 
 // numbers
-const number_ws = ignore_ws(number);
+const number_ws = ignore_ws(map(number, token('number')));
 
 // expression (head)
 function E(ctx) {
