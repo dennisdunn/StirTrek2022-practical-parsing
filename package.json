@@ -1,17 +1,20 @@
 {
   "name": "stirtrek2022-practical-parsing",
   "version": "0.1.0",
-  "description": "Example code for my talk Practical Parsing",
-  "main": "index.js",
+  "description": "Example code for my Stir Trek 2022 talk Practical Parsing",
+  "main": "src/grammar.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dennisdunn/StirTrek2022-practical-parsing.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "stir trek",
+    "parser combinator"
+  ],
+  "author": "Dennis Dunn <ansofive@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dennisdunn/StirTrek2022-practical-parsing/issues"
