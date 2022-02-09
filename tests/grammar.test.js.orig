@@ -1,8 +1,12 @@
 const { context } = require('@dennisdunn/tiny-parse');
-const G = require('../src/grammar');
+const { G } = require('../src/grammar');
 
 const log = obj => {
+<<<<<<< HEAD
     console.log(`${expect.getState().currentTestName} =>\n ${JSON.stringify(obj.result)}`);
+=======
+    console.log(`${expect.getState().currentTestName} => ${obj.result}`);
+>>>>>>> 6a2f40c471a74e19bd647be2001dfc65483ce2a7
 }
 
 const run = str => {
