@@ -1,5 +1,5 @@
 const { context } = require('@dennisdunn/tiny-parse');
-const { G } = require('../src/grammar');
+const G = require('../src/grammar');
 
 const log = obj => {
     console.log(`${expect.getState().currentTestName} =>\n ${JSON.stringify(obj.result)}`);
