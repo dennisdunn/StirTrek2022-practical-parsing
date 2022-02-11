@@ -1,19 +1,14 @@
 const { Stream } = require('@dennisdunn/tiny-parse');
 const G = require('../src/grammar');
 
-const log = obj => {
-    console.log(`${expect.getState().currentTestName} =>\n ${JSON.stringify(obj.result)}`);
-}
-
-const run = text => {
-    const result = G.start(new Stream(text));
-    log(result);
-}
-
 test('parse 1 + 2', () => {
-    run('1 + 2');
+    const r = G.start(new Stream('1 + 2'));
+    
+    expect(JSON.stringify(r)).toBe('{"type":"BINARY_OP","value":"+","right":{"type":"NUMBER","value":"2"},"left":{"type":"NUMBER","value":"1"}}');
 })
 
 test('parse (1 + 2)* (1 - 2 * 3)', () => {
-    run('(1 + 2)* (1 - 2 * 3)');
+    const r = G.start(new Stream('(1 + 2)* (1 - 2 * 3)'));
+
+    expect(JSON.stringify(r)).toBe('{"type":"BINARY_OP","value":"*","right":{"type":"BINARY_OP","value":"-","right":{"type":"BINARY_OP","value":"*","right":{"type":"NUMBER","value":"3"},"left":{"type":"NUMBER","value":"2"}},"left":{"type":"NUMBER","value":"1"}},"left":{"type":"BINARY_OP","value":"+","right":{"type":"NUMBER","value":"2"},"left":{"type":"NUMBER","value":"1"}}}')
 })
