@@ -1,20 +1,14 @@
 const { Stream } = require('@dennisdunn/tiny-parse');
 const G = require('../src/grammar');
 
-const log = obj => {
-    console.log(`${expect.getState().currentTestName} =>\n ${JSON.stringify(obj.result)}`);
-}
-
-const run = text => {
-    const parser = G.start;
-    const result = parser(new Stream(text));
-    log(result);
-}
-
 test('parse 1 + 2', () => {
-    run('1 + 2');
+    const r = G.start(new Stream('1 + 2'));
+
+    expect(r).toStrictEqual([["1"], ["+", ["2"]]])
 })
 
 test('parse (1 + 2)* (1 - 2 * 3)', () => {
-    run('(1 + 2)* (1 - 2 * 3)');
+    const r = G.start(new Stream('(1 + 2)* (1 - 2 * 3)'));
+
+    expect(r).toStrictEqual([[["(", [["1"], ["+", ["2"]]], ")"], ["*", ["(", [["1"], ["-", ["2", ["*", "3"]]]], ")"]]]]);
 })
