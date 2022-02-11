@@ -6,8 +6,7 @@ const log = obj => {
 }
 
 const run = text => {
-    const parser = G.start;
-    const result = parser(new Stream(text));
+    const result = G.start(new Stream(text));
     log(result);
 }
 

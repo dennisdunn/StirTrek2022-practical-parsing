@@ -7,6 +7,7 @@ class AST {
 
     static head_handler = value => {
         if (Array.isArray(value)) {
+            value = value.filter(item => item);
             switch (value.length) {
                 case 1:
                     return value[0];
@@ -21,6 +22,7 @@ class AST {
 
     static tail_handler = value => {
         if (Array.isArray(value)) {
+            value = value.filter(item => item);
             switch (value.length) {
                 case 1:
                     return value[0];

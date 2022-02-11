@@ -1,8 +1,8 @@
-const { choice, many, sequence, optional, anyOfChar, whitespace, number, map, str, between } = require('@dennisdunn/tiny-parse');
+const { choice, many, sequence, optional, anyOfChar, whitespace, number, map, str,flat, between } = require('@dennisdunn/tiny-parse');
 const { AST } = require('./ast');
 
 // run a parser and remove any trailing whitespace
-const ignore_ws = parser => map(sequence(parser, optional(many(whitespace))), value => Array.isArray(value) ? value[0] : value);
+const ignore_ws = parser => map(sequence(parser, optional(many(whitespace))), result=>result[0]);
 
 // summation operator
 const sop = map(ignore_ws(anyOfChar('+-')), AST.sum_op);
