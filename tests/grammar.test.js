@@ -1,13 +1,13 @@
-const { context, flat } = require('@dennisdunn/tiny-parse');
+const { Stream, flat } = require('@dennisdunn/tiny-parse');
 const G = require('../src/grammar');
 
 const log = obj => {
     console.log(`${expect.getState().currentTestName} =>\n ${JSON.stringify(obj.result)}`);
 }
 
-const run = str => {
+const run = text => {
     const parser = flat(G.start);
-    const result = parser(context(str));
+    const result = parser(new Stream(text));
     log(result);
 }
 
