@@ -7,6 +7,7 @@ class AST {
 
     static head_handler = value => {
         if (Array.isArray(value)) {
+            value = value.filter(item => item);
             switch (value.length) {
                 case 1:
                     return value[0];
@@ -21,6 +22,7 @@ class AST {
 
     static tail_handler = value => {
         if (Array.isArray(value)) {
+            value = value.filter(item => item);
             switch (value.length) {
                 case 1:
                     return value[0];
@@ -43,8 +45,6 @@ class AST_Node {
         this.type = type.toUpperCase();
         if (value) this.value = value;
     }
-
-    eval() { }
 }
 
 class AST_OpenParen extends AST_Node {
@@ -63,30 +63,11 @@ class AST_BinaryOp extends AST_Node {
     constructor(value) {
         super('binary_op', value);
     }
-    
-    eval() {
-        const operandA = this.left.eval();
-        const operandB = this.right.eval();
-        switch (this.value) {
-            case '+':
-                return operandA + operandB;
-            case '-':
-                return operandA - operandB;
-            case '*':
-                return operandA * operandB;
-            case '/':
-                return operandA / operandB;
-        }
-    }
 }
 
 class AST_Number extends AST_Node {
     constructor(value) {
         super('number', value);
-    }
-
-    eval(){
-        return parseFloat(this.value);
     }
 }
 
