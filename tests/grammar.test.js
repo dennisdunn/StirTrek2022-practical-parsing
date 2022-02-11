@@ -6,14 +6,14 @@ const log = obj => {
 }
 
 const run = text => {
-    const result = G.start(new Stream(text));
+    const result = G.start(new Stream(text)).eval();
     log(result);
 }
 
-test('parse 1 + 2', () => {
+test('evaluate 1 + 2', () => {
     run('1 + 2');
 })
 
-test('parse (1 + 2)* (1 - 2 * 3)', () => {
+test('evaluate (1 + 2)* (1 - 2 * 3)', () => {
     run('(1 + 2)* (1 - 2 * 3)');
 })
