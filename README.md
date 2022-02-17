@@ -5,7 +5,7 @@ Example code for my Stir Trek 2022 talk "Practical Parsing: Level Up With Parser
 is this repository parse a grammar for arithmetic expressions with slightly different results.
 
 After cloning the repository, CD into the directory and run ```npm install``` to grab the required dependencies. Checkout each of the
-branches and run ```npm test``` or call ```Expr()``` with your own text.
+branches and run ```npm test``` or call ```G.start()``` with your own text.
 
 ### as-parse-tree
 The result of the parse is an array-of-arrays that contains all of the textual elements of the source.
