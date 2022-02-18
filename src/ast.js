@@ -1,11 +1,9 @@
-class AST {
-    static open_lparen = () => new AST_OpenParen();
-    static close_paren = () => new AST_CloseParen();
-    static sum_op = value => new AST_BinaryOp(value);
-    static prod_op = value => new AST_BinaryOp(value);
-    static number = value => new AST_Number(value);
+const AST = {
+    sum: value => new AST_BinaryOp(value),
+    product: value => new AST_BinaryOp(value),
+    number: value => new AST_Number(value),
 
-    static head_handler = value => {
+    head_handler: value => {
         if (Array.isArray(value)) {
             value = value.filter(item => item);
             switch (value.length) {
@@ -18,9 +16,9 @@ class AST {
             return value[1];
         }
         return value;
-    };
+    },
 
-    static tail_handler = value => {
+    tail_handler: value => {
         if (Array.isArray(value)) {
             value = value.filter(item => item);
             switch (value.length) {
@@ -37,37 +35,24 @@ class AST {
             return value[0];
         }
         return value;
-    };
+    }
 }
 
 class AST_Node {
-    constructor(type, value = null) {
-        this.type = type.toUpperCase();
+    constructor(value = null) {
         if (value) this.value = value;
-    }
-}
-
-class AST_OpenParen extends AST_Node {
-    constructor() {
-        super('open_paren');
-    }
-}
-
-class AST_CloseParen extends AST_Node {
-    constructor() {
-        super('close_paren');
     }
 }
 
 class AST_BinaryOp extends AST_Node {
     constructor(value) {
-        super('binary_op', value);
+        super(value);
     }
 }
 
 class AST_Number extends AST_Node {
     constructor(value) {
-        super('number', value);
+        super(value);
     }
 }
 
