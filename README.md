@@ -15,7 +15,7 @@ Here is an example nodejs session:
 > s = new Stream('(1 + 2) * 3')
 > G.start(s)
 ```
-If you want to use the same stream more than once reset the position with ```stream.seek(0)```
+If you want to use the same stream more than once reset the position with ```s.seek(0)```
 
 ### as-parse-tree
 The result of the parse is an array-of-arrays that contains all of the textual elements of the source.
