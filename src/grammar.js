@@ -4,11 +4,11 @@ const { AST } = require('./ast');
 // run a parser and remove any trailing whitespace
 const ignore_ws = parser => map(sequence(parser, optional(many(whitespace))), result=>result[0]);
 
-// summation operator
+// precidence 0 operators
 const sum = map(ignore_ws(anyOfChar('+-')), AST.sum);
 
-// product operator
-const product = map(ignore_ws(anyOfChar('*/')), AST.product);
+// precidence 1 operators
+const product = map(ignore_ws(choice(str('mod'), str('rem'), anyOfChar('*/%^'))), AST.product);
 
 // open paren
 const open = ignore_ws(str('('));

@@ -63,6 +63,13 @@ class AST_BinaryOp extends AST_Node {
                 return operand_a * operand_b;
             case '/':
                 return operand_a / operand_b;
+            case 'rem':
+            case '%':
+                return operand_a % operand_b; // javascript % is rem not mod!
+            case 'mod':
+                return operand_a - Math.floor(operand_a / operand_b) * operand_b
+            case '^':
+                return Math.pow(operand_a, operand_b);
         }
 
     }
