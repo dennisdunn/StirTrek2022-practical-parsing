@@ -70,3 +70,17 @@ test('evaluate -12', () => {
 
     expect(r).toBe(-12);
 })
+
+test('evaluate 5!', () => {
+    const tree = G.start(new Stream('5!'));
+    const r = tree.eval();
+
+    expect(r).toBe(120);
+})
+
+test('evaluate sin(3)', () => {
+    const tree = G.start(new Stream('sin(3)'));
+    const r = tree.eval();
+
+    expect(r).toBe(0.1411200080598672);
+})

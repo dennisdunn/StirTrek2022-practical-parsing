@@ -1,6 +1,6 @@
 const AST = {
-    sum: value => new AST_BinaryOp(value),
-    product: value => new AST_BinaryOp(value),
+    binary: value => new AST_BinaryOp(value),
+    unary: value => new AST_UnaryOp(value),
     number: value => new AST_Number(value),
 
     head_handler: value => {
@@ -35,7 +35,33 @@ const AST = {
             return value[0];
         }
         return value;
-    }
+    },
+
+    func: value => {
+        if (Array.isArray(value)) {
+            value = value.filter(item => item);
+            switch (value.length) {
+                case 4:
+                    value[0].left = value[2];
+                    break;
+            }
+            return value[0];
+        }
+        return value;
+    },
+
+    post: value => {
+        if (Array.isArray(value)) {
+            value = value.filter(item => item);
+            switch (value.length) {
+                case 2:
+                    value[1].left = value[0];
+                    break;
+            }
+            return value[1];
+        }
+        return value;
+    },
 }
 
 class AST_Node {
@@ -70,8 +96,35 @@ class AST_BinaryOp extends AST_Node {
                 return operand_a - Math.floor(operand_a / operand_b) * operand_b
             case '^':
                 return Math.pow(operand_a, operand_b);
+            default:
+                throw new SyntaxError(`unknown operation "${this.value}`);
         }
+    }
+}
 
+class AST_UnaryOp extends AST_Node {
+    constructor(value) {
+        super(value);
+    }
+
+    static factorial(n) {
+        return n === 0 ? 1 : n * AST_UnaryOp.factorial(n - 1);
+    }
+
+    eval() {
+        const operand_a = this.left.eval();
+        switch (this.value) {
+            case '!':
+                return AST_UnaryOp.factorial(operand_a);
+            case 'sin':
+                return Math.sin(operand_a);
+            case 'cos':
+                return Math.cos(operand_a);
+            case 'tan':
+                return Math.tan(operand_a);
+            default:
+                throw new SyntaxError(`unknown operation "${this.value}`);
+        }
     }
 }
 
