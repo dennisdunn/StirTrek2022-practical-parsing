@@ -1,7 +1,7 @@
-StirTrek2022-practical-parsing
+practical-parsing-talk
 ===
 
-Example code for my Stir Trek 2022 talk "Practical Parsing: Level Up With Parser Combinators". Each of the branches
+Example code for my talk "Practical Parsing: Level Up With Parser Combinators". Each of the branches
 is this repository parse a grammar for arithmetic expressions with slightly different results.
 
 After cloning the repository, CD into the directory and run ```npm install``` to grab the required dependencies. The example grammar for each branch is exported as the ***start()*** method of the grammar object. Checkout each of the
