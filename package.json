@@ -24,6 +24,6 @@
     "jest": "^27.5.1"
   },
   "dependencies": {
-    "@dennisdunn/tiny-parse": "file:../tinyparse-js"
+    "@dennisdunn/tiny-parse": "^0.5.0"
   }
 }
