@@ -1,4 +1,4 @@
-practical-parsing-talk
+Practical Parsing: Examples
 ===
 
 Example code for my talk "Practical Parsing: Level Up With Parser Combinators". Each of the branches
